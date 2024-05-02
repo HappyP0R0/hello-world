@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
+          with:
+            repository: python-greetings
       - name: Install Python dependencies
         run: pip install -r requirements.txt
         working-directory: python-greetings
