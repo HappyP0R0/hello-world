@@ -7,6 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
+  test-something:
+    runs-on: self-hosted
+    steps:
+     - name: ... buil success ...
+      run: echo ... buil success ...
+
   install-pip-deps:
     runs-on: self-hosted
     steps:
