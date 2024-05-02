@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+  
+  workflow_dispatch:
 
 jobs:
   install-pip-deps:
@@ -21,7 +23,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
         with:
-          repository: mtararujs/python-greetings
+          repository: mtararujs/python-greetings 
           path: python-greetings
       - name: Stop existing service (Dev)
         run: |
