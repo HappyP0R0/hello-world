@@ -1,11 +1,10 @@
 inputs:
   port:
     description: 'Port for app'
-    default: 1010
+    default: 7001
   enviroment:
     description: 'Env name for var'
     default: 'Dev'
 runs:
   using: "composite"
   steps: 
-    
