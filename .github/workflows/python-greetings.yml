@@ -16,7 +16,7 @@ jobs:
         run: pm2 logs
 
   install-pip-deps:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
@@ -28,7 +28,7 @@ jobs:
         working-directory: python-greetings
 
   deploy-to-dev:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: install-pip-deps
     steps:
       - name: Checkout repository
@@ -45,7 +45,7 @@ jobs:
         working-directory: python-greetings
 
   tests-on-dev:
-      runs-on: ubuntu-latest
+      runs-on: self-hosted
       needs: deploy-to-dev
       steps:
         - name: Checkout repository
