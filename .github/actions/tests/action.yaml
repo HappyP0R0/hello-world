@@ -1,8 +1,7 @@
 inputs:
-  enviroment:
+  environment:
     description: 'Env name for var'
     default: 'Dev'
 runs:
   using: "composite"
   steps:
-    
