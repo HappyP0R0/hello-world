@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
         with:
-          repository: HappyP0R0/python-greetings
+          repository: mtararujs/python-greetings
           path: python-greetings
       - name: Install Python dependencies
         run: pip install -r requirements.txt
@@ -39,8 +39,9 @@ jobs:
       - name: Stop existing service (Dev)
         run: pm2 delete greetings-app-dev || true
         working-directory: python-greetings
+
       - name: Start service (Dev)
-        run: pm2 start app.py --name greetings-app-dev -- --port 7001
+        run: pm2 start app.py --name greetings-app-dev --port 7001
         working-directory: python-greetings
 
   tests-on-dev:
