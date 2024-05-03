@@ -2,9 +2,23 @@ inputs:
   port:
     description: 'Port for app'
     default: 7001
-  enviroment:
+  environment:
     description: 'Env name for var'
     default: 'Dev'
 runs:
   using: "composite"
   steps: 
+    - name: Checkout repository
+      uses: actions/checkout@v3.5.2
+      with:
+        repository: mtararujs/python-greetings 
+        path: python-greetings
+        
+    - name: Stop existing service (${{inputs.environment}})
+      run: pm2 delete greetings-app-${{inputs.environment}} & set "errorlevel=0"
+      shell: cmd
+      working-directory: python-greetings
+
+    - name: Start service (${{inputs.environment}})
+      run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o 7001
+      working-directory: python-greetings

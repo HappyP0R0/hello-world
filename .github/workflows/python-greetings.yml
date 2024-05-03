@@ -28,22 +28,14 @@ jobs:
         working-directory: python-greetings
 
   deploy-to-dev:
+    name: Deploy Dev
     runs-on: self-hosted
     needs: install-pip-deps
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3.5.2
+      - uses: ./.github/actions/deploy
         with:
-          repository: mtararujs/python-greetings 
-          path: python-greetings
-      - name: Stop existing service (Dev)
-        run: pm2 delete greetings-app-dev & set "errorlevel=0"
-        shell: cmd
-        working-directory: python-greetings
-
-      - name: Start service (Dev)
-        run: pm2 start app.py --name greetings-app-dev -o 7001
-        working-directory: python-greetings
+          port: 7001
+          enviroment: 'dev'
 
   tests-on-dev:
       runs-on: self-hosted
