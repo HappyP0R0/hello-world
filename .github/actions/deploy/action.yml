@@ -12,8 +12,10 @@ runs:
       uses: actions/checkout@v3.5.2
       shell: cmd
       with:
-        repository: mtararujs/python-greetings 
-        path: python-greetings
+        repository: 'mtararujs/python-greetings'
+          path: 'python-greetings'
+          ref: 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51
+          fetch-depth: 0
         
     - name: Stop existing service (${{inputs.environment}})
       run: pm2 delete greetings-app-${{inputs.environment}} & set "errorlevel=0"
