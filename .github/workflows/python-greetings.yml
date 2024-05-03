@@ -44,3 +44,57 @@ jobs:
         - uses: ./../hello-world/.github/actions/tests
           with:
             enviroment: 'dev'
+  
+  deploy-to-stg:
+    name: Deploy Dev
+    runs-on: self-hosted
+    needs: tests-on-dev
+    steps:
+      - uses: ./../hello-world/.github/actions/deploy
+        with:
+          port: 7002
+          enviroment: 'stg'
+
+  tests-on-stg:
+      runs-on: self-hosted
+      needs: deploy-to-stg
+      steps:
+        - uses: ./../hello-world/.github/actions/tests
+          with:
+            enviroment: 'stg'
+
+  deploy-to-preprod:
+    name: Deploy Dev
+    runs-on: self-hosted
+    needs: tests-on-stg
+    steps:
+      - uses: ./../hello-world/.github/actions/deploy
+        with:
+          port: 7003
+          enviroment: 'preprod'
+
+  tests-on-preprod:
+      runs-on: self-hosted
+      needs: deploy-to-preprod
+      steps:
+        - uses: ./../hello-world/.github/actions/tests
+          with:
+            enviroment: 'preprod'
+
+  deploy-to-prod:
+    name: Deploy Dev
+    runs-on: self-hosted
+    needs: tests-on-preprod
+    steps:
+      - uses: ./../hello-world/.github/actions/deploy
+        with:
+          port: 7004
+          enviroment: 'prod'
+
+  tests-on-prod:
+      runs-on: self-hosted
+      needs: deploy-to-prod
+      steps:
+        - uses: ./../hello-world/.github/actions/tests
+          with:
+            enviroment: 'prod'
