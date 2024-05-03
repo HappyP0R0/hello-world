@@ -10,6 +10,7 @@ runs:
   steps: 
     - name: Checkout repository
       uses: actions/checkout@v3.5.2
+      shell: cmd
       with:
         repository: mtararujs/python-greetings 
         path: python-greetings
@@ -21,4 +22,5 @@ runs:
 
     - name: Start service (${{inputs.environment}})
       run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o ${{inputs.port}}
+      shell: cmd
       working-directory: python-greetings
