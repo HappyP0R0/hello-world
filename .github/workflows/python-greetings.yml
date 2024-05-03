@@ -38,15 +38,16 @@ jobs:
           enviroment: 'dev'
 
   tests-on-dev:
-      runs-on: self-hosted
-      needs: deploy-to-dev
-      steps:
-        - uses: ./../hello-world/.github/actions/tests
-          with:
-            enviroment: 'dev'
+    name: Test Dev
+    runs-on: self-hosted
+    needs: deploy-to-dev
+    steps:
+      - uses: ./../hello-world/.github/actions/tests
+        with:
+          enviroment: 'dev'
   
   deploy-to-stg:
-    name: Deploy Dev
+    name: Deploy Staging
     runs-on: self-hosted
     needs: tests-on-dev
     steps:
@@ -56,15 +57,16 @@ jobs:
           enviroment: 'stg'
 
   tests-on-stg:
-      runs-on: self-hosted
-      needs: deploy-to-stg
-      steps:
-        - uses: ./../hello-world/.github/actions/tests
-          with:
-            enviroment: 'stg'
+    name: Test Staging
+    runs-on: self-hosted
+    needs: deploy-to-stg
+    steps:
+      - uses: ./../hello-world/.github/actions/tests
+        with:
+          enviroment: 'stg'
 
   deploy-to-preprod:
-    name: Deploy Dev
+    name: Deploy PreProd
     runs-on: self-hosted
     needs: tests-on-stg
     steps:
@@ -74,15 +76,16 @@ jobs:
           enviroment: 'preprod'
 
   tests-on-preprod:
-      runs-on: self-hosted
-      needs: deploy-to-preprod
-      steps:
-        - uses: ./../hello-world/.github/actions/tests
-          with:
-            enviroment: 'preprod'
+    name: Test PreProd
+    runs-on: self-hosted
+    needs: deploy-to-preprod
+    steps:
+      - uses: ./../hello-world/.github/actions/tests
+        with:
+          enviroment: 'preprod'
 
   deploy-to-prod:
-    name: Deploy Dev
+    name: Deploy Prod
     runs-on: self-hosted
     needs: tests-on-preprod
     steps:
@@ -92,9 +95,10 @@ jobs:
           enviroment: 'prod'
 
   tests-on-prod:
-      runs-on: self-hosted
-      needs: deploy-to-prod
-      steps:
-        - uses: ./../hello-world/.github/actions/tests
-          with:
-            enviroment: 'prod'
+    name: Test Prod
+    runs-on: self-hosted
+    needs: deploy-to-prod
+    steps:
+      - uses: ./../hello-world/.github/actions/tests
+        with:
+          enviroment: 'prod'
