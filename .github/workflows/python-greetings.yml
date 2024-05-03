@@ -11,7 +11,10 @@ jobs:
   install-pip-deps:
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
+      - name: Check out repository
+        uses: actions/checkout@v3.5.2
+        
+      - name: Checkout python-greetings repository
         uses: actions/checkout@v3.5.2
         with:
           repository: 'mtararujs/python-greetings'
