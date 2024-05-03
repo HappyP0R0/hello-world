@@ -20,5 +20,5 @@ runs:
       working-directory: python-greetings
 
     - name: Start service (${{inputs.environment}})
-      run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o 7001
+      run: pm2 start app.py --name greetings-app-${{inputs.environment}} -o ${{inputs.port}}
       working-directory: python-greetings
